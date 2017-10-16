@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FoodTour</string>
+
+    <string name="navigation_drawer_open">Open Drawer</string>
+    <string name="navigation_drawer_close">Close Drawer </string>
+
+    <string name="action_settings">CN Settings</string>
+    <string name="title_activity_tour_maps">CN Map</string>
+    <string name="title_activity_paypal">CN Pay</string>
+</resources>
