@@ -14,6 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+
+import java.math.BigDecimal;
+
+import au.com.miacucina.com.foodtour.payment.PaypalConfiguration;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,6 +48,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        startPaypalService();
     }
 
     @Override
@@ -83,10 +92,19 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Intent tourMapIntent = new Intent(this, TourMapsActivity.class);
+            Intent tourMapIntent = new Intent(MainActivity.this, TourMapsActivity.class);
             this.startActivity(tourMapIntent);
 
         } else if (id == R.id.nav_gallery) {
+
+            PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "sample item",
+                    PayPalPayment.PAYMENT_INTENT_SALE);
+
+            Intent intent = new Intent(MainActivity.this, PaypalActivity.class);
+            intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PaypalConfiguration.config);
+            intent.putExtra(PaypalActivity.EXTRA_PAYMENT, payment);
+            startActivityForResult(intent, 0);
+
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -101,5 +119,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    private void startPaypalService() {
+
+        Intent intent = new Intent(this, PayPalService.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PaypalConfiguration.config);
+        startService(intent);
     }
 }

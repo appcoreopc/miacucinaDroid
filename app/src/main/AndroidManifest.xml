@@ -40,7 +40,11 @@
 
         <activity
             android:name=".TourMapsActivity"
-            android:label="@string/title_activity_tour_maps"></activity>
+            android:label="@string/title_activity_tour_maps" />
+        <activity
+            android:name=".PaypalActivity"
+            android:label="@string/title_activity_paypal"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
