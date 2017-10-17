@@ -19,6 +19,7 @@ import com.paypal.android.sdk.payments.PayPalService;
 
 import java.math.BigDecimal;
 
+import au.com.miacucina.com.foodtour.REST.LocationRequest;
 import au.com.miacucina.com.foodtour.payment.PaypalConfiguration;
 
 public class MainActivity extends AppCompatActivity
@@ -49,7 +50,15 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         startPaypalService();
+
+        // start making REST calls //
+
+        LocationRequest locationRequest = new LocationRequest(this.getApplicationContext());
+        locationRequest.getLocation("");
+
+
     }
 
     @Override
