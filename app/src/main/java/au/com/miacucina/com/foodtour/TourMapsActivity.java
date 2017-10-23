@@ -44,4 +44,6 @@ public class TourMapsActivity extends FragmentActivity implements OnMapReadyCall
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
     }
+
+
 }

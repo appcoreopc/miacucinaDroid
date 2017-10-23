@@ -50,14 +50,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        startPaypalService();
-
         // start making REST calls //
-
         LocationRequest locationRequest = new LocationRequest(this.getApplicationContext());
         locationRequest.getLocation("");
-
 
     }
 
@@ -105,15 +100,9 @@ public class MainActivity extends AppCompatActivity
             this.startActivity(tourMapIntent);
 
         } else if (id == R.id.nav_gallery) {
-
-            PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "sample item",
-                    PayPalPayment.PAYMENT_INTENT_SALE);
-
             Intent intent = new Intent(MainActivity.this, PaymentlActivity.class);
             intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PaypalConfiguration.config);
-            intent.putExtra(PaymentlActivity.EXTRA_PAYMENT, payment);
             startActivityForResult(intent, 0);
-
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -130,11 +119,4 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-    private void startPaypalService() {
-
-        Intent intent = new Intent(this, PayPalService.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PaypalConfiguration.config);
-        startService(intent);
-    }
 }
