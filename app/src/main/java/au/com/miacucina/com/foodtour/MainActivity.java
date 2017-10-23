@@ -109,9 +109,9 @@ public class MainActivity extends AppCompatActivity
             PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "sample item",
                     PayPalPayment.PAYMENT_INTENT_SALE);
 
-            Intent intent = new Intent(MainActivity.this, PaypalActivity.class);
+            Intent intent = new Intent(MainActivity.this, PaymentlActivity.class);
             intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PaypalConfiguration.config);
-            intent.putExtra(PaypalActivity.EXTRA_PAYMENT, payment);
+            intent.putExtra(PaymentlActivity.EXTRA_PAYMENT, payment);
             startActivityForResult(intent, 0);
 
 
