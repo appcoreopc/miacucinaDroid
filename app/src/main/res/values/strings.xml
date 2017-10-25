@@ -5,4 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_tour_maps">Map</string>
     <string name="title_activity_paypal">PaypalActivity</string>
+    <string name="text_explore">Explore</string>
+    <string name="text_favourites">Favourites</string>
+    <string name="text_inbox">Inbox</string>
+    <string name="text_profile">Profile</string>
 </resources>
