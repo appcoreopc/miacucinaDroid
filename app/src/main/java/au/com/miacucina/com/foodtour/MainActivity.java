@@ -27,59 +27,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                int id = item.getItemId();
-
-                if (id == R.id.nav_camera) {
-                    // Handle the camera action
-                    Intent tourMapIntent = new Intent(MainActivity.this, TourMapsActivity.class);
-                    startActivity(tourMapIntent);
-
-                } else if (id == R.id.nav_gallery) {
-                    Intent intent = new Intent(MainActivity.this, PaymentlActivity.class);
-                    intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PaypalConfiguration.config);
-                    startActivityForResult(intent, 0);
-
-                } else if (id == R.id.nav_slideshow) {
-
-                } else if (id == R.id.nav_manage) {
-
-                } else if (id == R.id.nav_share) {
-
-                } else if (id == R.id.nav_send) {
-
-                }
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
-
-
-
-            }
-        });
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
