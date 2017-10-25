@@ -21,7 +21,7 @@ import au.com.miacucina.com.foodtour.REST.LocationRequest;
 import au.com.miacucina.com.foodtour.payment.PaypalConfiguration;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,40 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int id = item.getItemId();
+
+                if (id == R.id.nav_camera) {
+                    // Handle the camera action
+                    Intent tourMapIntent = new Intent(MainActivity.this, TourMapsActivity.class);
+                    startActivity(tourMapIntent);
+
+                } else if (id == R.id.nav_gallery) {
+                    Intent intent = new Intent(MainActivity.this, PaymentlActivity.class);
+                    intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PaypalConfiguration.config);
+                    startActivityForResult(intent, 0);
+
+                } else if (id == R.id.nav_slideshow) {
+
+                } else if (id == R.id.nav_manage) {
+
+                } else if (id == R.id.nav_share) {
+
+                } else if (id == R.id.nav_send) {
+
+                }
+
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+
+
+
+            }
+        });
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
@@ -56,7 +89,11 @@ public class MainActivity extends AppCompatActivity
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_explore:
+
                     case R.id.action_favourites:
+                        Intent intent = new Intent(MainActivity.this, PaymentlActivity.class);
+                        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, PaypalConfiguration.config);
+                        startActivityForResult(intent, 0);
                     case R.id.action_profile:
                 }
                 return true;
@@ -101,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+  /*  @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -130,6 +167,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
+    }*/
 
 }
