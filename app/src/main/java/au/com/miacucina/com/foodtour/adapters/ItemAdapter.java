@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import au.com.miacucina.com.foodtour.Model.ItemDisplay;
@@ -13,7 +14,7 @@ import au.com.miacucina.com.foodtour.R;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> {
 
-    private List<ItemDisplay> itemList;
+    private List<ItemDisplay> itemList = new ArrayList<>();
 
     public ItemAdapter(List<ItemDisplay> list) {
         itemList = list;
@@ -27,8 +28,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        ItemDisplay item = itemList.get(position);
 
+        ItemDisplay item = itemList.get(position);
         holder.title.setText(item.getTitle());
         holder.titleInfo.setText(item.getTitleInfo());
         holder.description.setText(item.getDescription());
