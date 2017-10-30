@@ -1,5 +1,6 @@
 package au.com.miacucina.com.foodtour.adapters;
 
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,5 +53,19 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
             titleInfo = (TextView) view.findViewById(R.id.description);
         }
     }
+
+    public void swapItems(List<ItemDisplay> contacts) {
+        // compute diffs
+        final ItemDiffCallback diffCallback = new ItemDiffCallback(this.itemList, contacts);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+
+        // clear contacts and add
+        this.itemList.clear();
+        this.itemList.addAll(contacts);
+
+        diffResult.dispatchUpdatesTo(this); // calls adapter's notify methods after diff is computed
+    }
+
+
 
 }
