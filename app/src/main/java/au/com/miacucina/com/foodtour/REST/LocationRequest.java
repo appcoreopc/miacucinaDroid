@@ -10,6 +10,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import au.com.miacucina.com.foodtour.Model.TourLocationModel;
@@ -18,24 +20,23 @@ public class LocationRequest implements TourLocation {
 
     private Context _context;
     private RequestQueue queue;
+    String jsonResponse = "";
 
     public LocationRequest(Context context) {
         _context = context;
     }
 
     @Override
-    public List<TourLocationModel> getLocation(String locationCode) {
+    public String getLocation(String url) throws InterruptedException {
 
         queue = Volley.newRequestQueue(this._context);
-        String url = "http://hmkcode.appspot.com/rest/controller/get.json";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Toast.makeText(_context, "Downloaded.", Toast.LENGTH_SHORT);
+                        jsonResponse = response;
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -46,7 +47,7 @@ public class LocationRequest implements TourLocation {
         });
 
         queue.add(stringRequest);
-        return null;
+        return jsonResponse;
     }
 
     @Nullable

@@ -7,6 +7,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
+import android.view.Gravity;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,7 @@ import au.com.miacucina.com.foodtour.Model.ItemDisplay;
 import au.com.miacucina.com.foodtour.REST.LocationRequest;
 import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 import au.com.miacucina.com.foodtour.adapters.ItemClickSupport;
-import au.com.miacucina.com.foodtour.payment.PaypalConfiguration;
+
 
 public class MainActivity extends AppCompatActivity
 {
@@ -54,6 +58,10 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(itemAdapter);
 
         // https://guides.codepath.com/android/using-the-recyclerview
+        // https://jsonplaceholder.typicode.com/photos
+
+      SnapHelper snapHelperStart = new GravitySnapHelper(Gravity.START);
+        snapHelperStart.attachToRecyclerView(recyclerView);
 
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
@@ -72,18 +80,31 @@ public class MainActivity extends AppCompatActivity
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_explore:
+                        try {
+                            createRestRequest("https://jsonplaceholder.typicode.com/photos");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                     case R.id.action_favourites:
+
                     case R.id.action_profile:
                 }
                 return true;
             }
         });
+    }
 
-        // start making REST calls //
+    private void createRestRequest(String urlRequest) throws InterruptedException {
+
+        // we need to pass all the resources ref / data list //
+
         LocationRequest locationRequest = new LocationRequest(this.getApplicationContext());
-        locationRequest.getLocation("");
+        String response = locationRequest.getLocation(urlRequest);
+
 
     }
+
 
     @Override
     public void onBackPressed() {
