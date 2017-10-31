@@ -26,14 +26,14 @@ import au.com.miacucina.com.foodtour.Model.ItemDisplay;
 import au.com.miacucina.com.foodtour.REST.LocationRequest;
 import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 import au.com.miacucina.com.foodtour.adapters.ItemClickSupport;
+import au.com.miacucina.com.foodtour.managed.LocationCoordinator;
 
-
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 
     private ItemAdapter itemAdapter;
     private RecyclerView recyclerView;
     private List<ItemDisplay> itemList;
+    private LocationCoordinator coordinator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +60,13 @@ public class MainActivity extends AppCompatActivity
         // https://guides.codepath.com/android/using-the-recyclerview
         // https://jsonplaceholder.typicode.com/photos
 
-      SnapHelper snapHelperStart = new GravitySnapHelper(Gravity.START);
-        snapHelperStart.attachToRecyclerView(recyclerView);
+        //SnapHelper snapHelperStart = new GravitySnapHelper(Gravity.START);
+        //snapHelperStart.attachToRecyclerView(recyclerView);
 
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-
                 //
-
             }
         });
 
@@ -99,8 +97,12 @@ public class MainActivity extends AppCompatActivity
 
         // we need to pass all the resources ref / data list //
 
-        LocationRequest locationRequest = new LocationRequest(this.getApplicationContext());
-        String response = locationRequest.getLocation(urlRequest);
+        coordinator = new LocationCoordinator(this.getApplicationContext(), itemList);
+        try {
+            coordinator.createRequest("https://jsonplaceholder.typicode.com/photos");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -138,8 +140,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void populateData()
-    {
+    private void populateData() {
         itemList = new ArrayList<>();
 
         ItemDisplay a = new ItemDisplay("title1", "title info1", "description1", "imageUrl");
