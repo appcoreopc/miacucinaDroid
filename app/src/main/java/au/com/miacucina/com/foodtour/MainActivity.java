@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         // we need to pass all the resources ref / data list //
 
-        coordinator = new LocationCoordinator(this.getApplicationContext(), itemList);
+        coordinator = new LocationCoordinator(this.getApplicationContext(), itemAdapter, itemList);
         try {
             coordinator.createRequest("https://jsonplaceholder.typicode.com/photos");
         } catch (InterruptedException e) {

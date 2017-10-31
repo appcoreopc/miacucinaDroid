@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import au.com.miacucina.com.foodtour.Model.ItemDisplay;
+import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 
 import static com.paypal.android.sdk.cu.i;
 import static com.paypal.android.sdk.cu.t;
@@ -27,9 +28,11 @@ public class LocationCoordinator implements RequestCoordnation {
     private Context _context;
     private RequestQueue queue;
     private JSONObject jsonResponse;
+    private ItemAdapter mItemAdapter;
 
-    public LocationCoordinator(Context applicationContext, List<ItemDisplay> itemList) {
+    public LocationCoordinator(Context applicationContext, ItemAdapter adapter, List<ItemDisplay> itemList) {
         _context = applicationContext;
+        mItemAdapter = adapter;
         mList = itemList;
     }
 
@@ -68,6 +71,10 @@ public class LocationCoordinator implements RequestCoordnation {
                                     mList.add(itemDisplay);
                                 }
 
+                                if (mList.size() > 0)
+                                {
+                                    mItemAdapter.notifyDataSetChanged();
+                                }
                             }
 
                         } catch (JSONException e) {
