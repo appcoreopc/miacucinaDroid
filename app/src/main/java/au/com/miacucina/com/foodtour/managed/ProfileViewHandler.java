@@ -1,22 +1,23 @@
 package au.com.miacucina.com.foodtour.managed;
-
-
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
+import java.util.List;
+import au.com.miacucina.com.foodtour.Model.ItemDisplay;
 import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 
 public class ProfileViewHandler implements LayoutViewHandler {
 
-    RecyclerView mRecyclerView;
-    ItemAdapter mAdapter;
+    private Context mContext;
+    private ItemAdapter mAdapter;
+    private List<ItemDisplay> itemDisplays;
 
-     public ProfileViewHandler(RecyclerView recyclerView, ItemAdapter adapter)
-     {
-         mRecyclerView = recyclerView;
-         mAdapter = adapter;
-     }
+    public ProfileViewHandler(Context applicationContext, ItemAdapter adapter, List<ItemDisplay> itemList) {
+        mContext = applicationContext;
+        mAdapter = adapter;
+        itemDisplays = itemList;
+    }
 
-     public void setLayout(){
+    @Override
+    public void renderLayout(String url) throws InterruptedException {
 
-         mRecyclerView.setAdapter(mAdapter);
-     }
+    }
 }

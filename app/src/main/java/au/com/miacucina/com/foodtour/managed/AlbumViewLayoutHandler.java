@@ -1,28 +1,20 @@
 package au.com.miacucina.com.foodtour.managed;
 
 import android.content.Context;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Iterator;
 import java.util.List;
-
 import au.com.miacucina.com.foodtour.Model.ItemDisplay;
 import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 
-import static com.paypal.android.sdk.cu.i;
-import static com.paypal.android.sdk.cu.t;
-
-public class LocationCoordinator implements RequestCoordnation {
+public class AlbumViewLayoutHandler implements LayoutViewHandler {
 
     private List<ItemDisplay> mList;
     private Context _context;
@@ -30,14 +22,15 @@ public class LocationCoordinator implements RequestCoordnation {
     private JSONObject jsonResponse;
     private ItemAdapter mItemAdapter;
 
-    public LocationCoordinator(Context applicationContext, ItemAdapter adapter, List<ItemDisplay> itemList) {
+
+    public AlbumViewLayoutHandler(Context applicationContext, ItemAdapter adapter, List<ItemDisplay> itemList) {
         _context = applicationContext;
         mItemAdapter = adapter;
         mList = itemList;
     }
 
     @Override
-    public void createRequest(String url) throws InterruptedException {
+    public void renderLayout(String url) throws InterruptedException {
         getLocation(url);
     }
 
@@ -61,7 +54,6 @@ public class LocationCoordinator implements RequestCoordnation {
                                 for (int i = 0; i < 20; i++) {
 
                                     JSONObject ob = jsonArray.getJSONObject(i);
-
                                     String title = ob.getString("title");
                                     String id = ob.getString("id");
                                     String url = ob.getString("url");
@@ -71,8 +63,7 @@ public class LocationCoordinator implements RequestCoordnation {
                                     mList.add(itemDisplay);
                                 }
 
-                                if (mList.size() > 0)
-                                {
+                                if (mList.size() > 0) {
                                     mItemAdapter.notifyDataSetChanged();
                                 }
                             }
@@ -81,15 +72,15 @@ public class LocationCoordinator implements RequestCoordnation {
                             e.printStackTrace();
                         }
 
-
                     }
                 }, new Response.ErrorListener() {
+
+
             @Override
             public void onErrorResponse(VolleyError error) {
 
             }
         });
-
         queue.add(stringRequest);
     }
 }

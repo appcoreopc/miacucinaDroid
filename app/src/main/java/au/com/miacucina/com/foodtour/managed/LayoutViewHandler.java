@@ -1,5 +1,6 @@
 package au.com.miacucina.com.foodtour.managed;
 
-interface LayoutViewHandler {
-    void setLayout();
+public interface LayoutViewHandler {
+
+    void renderLayout(String url) throws InterruptedException;
 }
