@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -14,9 +13,10 @@ import java.util.List;
 import au.com.miacucina.com.foodtour.Model.ItemDisplay;
 import au.com.miacucina.com.foodtour.R;
 
-public class ItemAdapter extends RecyclerView.Adapter<MyViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder > {
 
     private List<ItemDisplay> itemList = new ArrayList<>();
+    private ViewType mViewType = ViewType.ALBUM;
 
     public ItemAdapter(List<ItemDisplay> list) {
         itemList = list;
@@ -25,12 +25,23 @@ public class ItemAdapter extends RecyclerView.Adapter<MyViewHolder> {
     View itemView;
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_row, null);
-        return new MyViewHolder(itemView);
+        if (mViewType == ViewType.ALBUM) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_row, null);
+            return new HorizontalAlbumViewHolder(itemView);
+        }
+        else
+        {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_row, null);
+            return new StaggeredViewHolder(itemView);
+        }
     }
 
+    public void setViewType(ViewType viewType)
+    {
+        mViewType = viewType;
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -38,16 +49,21 @@ public class ItemAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder  holder, int position) {
 
-        ItemDisplay item = itemList.get(position);
-        holder.title.setText(item.getTitle());
-        holder.titleInfo.setText(item.getTitleInfo());
-        holder.description.setText(item.getDescription());
-        String imageUrl = itemList.get(position).getImageUrl();
+        if (mViewType == ViewType.ALBUM) {
 
-        if (imageUrl != null)
-            Picasso.with(itemView.getContext()).load(imageUrl).into(holder.imageView);
+            HorizontalAlbumViewHolder albumViewHolder = (HorizontalAlbumViewHolder) holder;
+            ItemDisplay item = itemList.get(position);
+            albumViewHolder.title.setText(item.getTitle());
+            albumViewHolder.titleInfo.setText(item.getTitleInfo());
+            albumViewHolder.description.setText(item.getDescription());
+            String imageUrl = itemList.get(position).getImageUrl();
+
+            if (imageUrl != null)
+                Picasso.with(itemView.getContext()).load(imageUrl).into(albumViewHolder.imageView);
+        }
+
     }
 
     @Override

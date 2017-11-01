@@ -7,11 +7,11 @@ import android.widget.TextView;
 
 import au.com.miacucina.com.foodtour.R;
 
-public class MyViewHolder extends RecyclerView.ViewHolder {
+public class HorizontalAlbumViewHolder extends RecyclerView.ViewHolder {
     public TextView title, titleInfo, description;
     public ImageView imageView;
 
-    public MyViewHolder(View view) {
+    public HorizontalAlbumViewHolder(View view) {
 
         super(view);
 
