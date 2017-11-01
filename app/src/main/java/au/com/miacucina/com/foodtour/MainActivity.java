@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(itemAdapter);
 
+
+
         // https://guides.codepath.com/android/using-the-recyclerview
         // https://jsonplaceholder.typicode.com/photos
 
@@ -103,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
     }
 
