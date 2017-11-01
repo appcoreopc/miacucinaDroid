@@ -1,11 +1,15 @@
 package au.com.miacucina.com.foodtour.adapters;
 
+import android.media.Image;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +25,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         itemList = list;
     }
 
+    View itemView;
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_row, null);
+        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_row, null);
         return new MyViewHolder(itemView);
     }
 
@@ -36,6 +42,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         holder.titleInfo.setText(item.getTitleInfo());
         holder.description.setText(item.getDescription());
 
+        String imageUrl = itemList.get(position).getImageUrl();
+
+        if (imageUrl != null)
+            Picasso.with(itemView.getContext()).load(imageUrl).into(holder.imageView);
+
     }
 
     @Override
@@ -45,12 +56,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, titleInfo, description;
+        public ImageView imageView;
 
         public MyViewHolder(View view) {
+
             super(view);
+
             title = (TextView) view.findViewById(R.id.title);
             description = (TextView) view.findViewById(R.id.titleInfo);
             titleInfo = (TextView) view.findViewById(R.id.description);
+            imageView = (ImageView) view.findViewById(R.id.imageContent);
         }
     }
 

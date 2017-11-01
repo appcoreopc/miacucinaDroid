@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.google.android.gms.wallet.Cart;
 
 import com.braintreepayments.api.PayPal;
@@ -30,7 +31,7 @@ public class PaymentlActivity extends AppCompatActivity {
     public static String EXTRA_PAYMENT = "TOUR_PAYMENT";
     public static int RESULT_EXTRAS_INVALID = -1;
     private Context _context;
-    private String mAuthorization = "sandbox_tmxhyf7d_dcpspy2brwdjr3qn";
+    private String mAuthorization = "sandbox_7887vzbv_cg3rjqtqw8j7crr5";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class PaymentlActivity extends AppCompatActivity {
         paypalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(_context,"test", Toast.LENGTH_SHORT).show();
+                Toast.makeText(_context, "test", Toast.LENGTH_SHORT).show();
                 OpenDropIn();
             }
         });
@@ -64,8 +65,7 @@ public class PaymentlActivity extends AppCompatActivity {
         startActivityForResult(dropInRequest.getIntent(this.getApplicationContext()), DROP_IN_REQUEST);
     }
 
-    private void OpenDropIn()
-    {
+    private void OpenDropIn() {
         DropInRequest dropInRequest = new DropInRequest()
                 .clientToken(mAuthorization)
                 .amount("1.00")
@@ -101,11 +101,9 @@ public class PaymentlActivity extends AppCompatActivity {
                     Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
                 }
             }
-        }
-        else if (resultCode == Activity.RESULT_CANCELED) {
+        } else if (resultCode == Activity.RESULT_CANCELED) {
             Log.i("paymentExample", "The user canceled.");
-        }
-        else if (resultCode == PaymentlActivity.RESULT_EXTRAS_INVALID) {
+        } else if (resultCode == PaymentlActivity.RESULT_EXTRAS_INVALID) {
             Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
         }
     }
