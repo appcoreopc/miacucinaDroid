@@ -17,7 +17,6 @@ public class ProfileViewHandler implements LayoutViewHandler {
 
      public void setLayout(){
 
-
          mRecyclerView.setAdapter(mAdapter);
      }
 }

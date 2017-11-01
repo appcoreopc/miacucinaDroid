@@ -1,5 +1,6 @@
 package au.com.miacucina.com.foodtour;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -57,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(itemAdapter);
 
-
-
         // https://guides.codepath.com/android/using-the-recyclerview
         // https://jsonplaceholder.typicode.com/photos
 
@@ -87,8 +86,11 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     case R.id.action_favourites:
-
+                        Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
+                        startActivity(myIntent);
+                        break;
                     case R.id.action_profile:
+
                 }
                 return true;
             }

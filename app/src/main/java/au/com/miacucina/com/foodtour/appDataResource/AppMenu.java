@@ -11,25 +11,15 @@ public class AppMenu {
     {
         List<ItemDisplay> itemList = new ArrayList<>();
 
-        ItemDisplay a = new ItemDisplay("title1", "title info1", "description1", "imageUrl");
-        ItemDisplay b = new ItemDisplay("title2", "title info1", "description1", "imageUrl");
-        ItemDisplay c = new ItemDisplay("title3", "title info1", "description1", "imageUrl");
-        ItemDisplay d = new ItemDisplay("title4", "title info1", "description1", "imageUrl");
-        ItemDisplay e = new ItemDisplay("title5", "title info1", "description1", "imageUrl");
-        ItemDisplay f = new ItemDisplay("title6", "title info1", "description1", "imageUrl");
-        ItemDisplay g = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-        ItemDisplay h = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-        ItemDisplay i = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-        ItemDisplay j = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-        ItemDisplay k = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
+        ItemDisplay creditCoupons = new ItemDisplay("Credit & Coupons", "title info1", "description1", "imageUrl");
+        ItemDisplay inviteFriends = new ItemDisplay("Invite friends", "title info1", "description1", "imageUrl");
+        ItemDisplay settings = new ItemDisplay("Settings", "title info1", "description1", "imageUrl");
+        ItemDisplay feedback = new ItemDisplay("Give us feeback", "title info1", "description1", "imageUrl");
 
-        itemList.add(a);
-        itemList.add(b);
-        itemList.add(c);
-        itemList.add(d);
-        itemList.add(e);
-        itemList.add(f);
-        itemList.add(g);
+        itemList.add(creditCoupons);
+        itemList.add(inviteFriends);
+        itemList.add(settings);
+        itemList.add(feedback);
 
         return itemList;
     }
