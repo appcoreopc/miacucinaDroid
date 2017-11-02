@@ -7,4 +7,4 @@ Example layout:
 
 
 Example: 
-![alt text](https://github.com/appcoreopc/miacucinaDroid/blob/master/sc1.gif "Android layout")
+![alt text](https://github.com/appcoreopc/miacucinaDroid/blob/master/profile.png "Android layout")
