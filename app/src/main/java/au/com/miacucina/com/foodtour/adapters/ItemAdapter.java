@@ -73,7 +73,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             switch (imageUrl) {
                 case "1":
-                    profileViewHolder.imageView.setImageResource(R.drawable.ic_card_giftcard_black_24px);
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_attach_money_black_24px);
                     break;
                 case "2":
                     profileViewHolder.imageView.setImageResource(R.drawable.ic_card_giftcard_black_24px);
@@ -82,7 +82,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     profileViewHolder.imageView.setImageResource(R.drawable.ic_settings_black_24px);
                     break;
                 case "4":
-                    profileViewHolder.imageView.setImageResource(R.drawable.ic_savetrips_24px);
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_speaker_notes_black_24px);
                     break;
             }
 
