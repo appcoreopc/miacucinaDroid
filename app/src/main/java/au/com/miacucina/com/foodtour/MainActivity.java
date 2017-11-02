@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_profile:
                         itemList = (List<ItemDisplay>) AppMenu.getMenu();
+                        itemAdapter.setItemList(itemList);
                         itemAdapter.setViewType(ViewType.PROFILE);
                         mLayoutManager = new LinearLayoutManager(getApplicationContext());
                         recyclerView.setLayoutManager(mLayoutManager);
