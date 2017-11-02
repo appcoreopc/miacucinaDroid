@@ -1,6 +1,5 @@
 package au.com.miacucina.com.foodtour;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -15,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         itemList = new ArrayList<>();
-        populateData();
+        itemList = (List<ItemDisplay>) AppMenu.populateData();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         itemAdapter = new ItemAdapter(itemList);
@@ -81,26 +79,20 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_explore:
                         try {
-                            renderAlbumViewOnRecycleView("https://jsonplaceholder.typicode.com/photos");
+                            renderAlbumLayout("https://jsonplaceholder.typicode.com/photos");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
 
                     case R.id.action_favourites:
                         try {
-                            renderAlbumViewOnRecycleView("https://jsonplaceholder.typicode.com/photos");
+                            renderAlbumLayout("https://jsonplaceholder.typicode.com/photos");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-
                         break;
                     case R.id.action_profile:
-                        itemList = (List<ItemDisplay>) AppMenu.getMenu();
-                        itemAdapter.setItemList(itemList);
-                        itemAdapter.setViewType(ViewType.PROFILE);
-                        mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                        recyclerView.setLayoutManager(mLayoutManager);
-                        recyclerView.setAdapter(itemAdapter);
+                        loadProfileLayout();
 
                 }
                 return true;
@@ -108,7 +100,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void renderAlbumViewOnRecycleView(String urlRequest) throws InterruptedException {
+
+    private void loadProfileLayout() {
+
+        itemList = (List<ItemDisplay>) AppMenu.getMenu();
+        itemAdapter.setItemList(itemList);
+        itemAdapter.setViewType(ViewType.PROFILE);
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(itemAdapter);
+    }
+
+    private void renderAlbumLayout(String urlRequest) throws InterruptedException {
 
         itemAdapter.setViewType(ViewType.ALBUM);
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -158,41 +161,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void populateData() {
-        itemList = new ArrayList<>();
-
-        ItemDisplay a = new ItemDisplay("title1", "title info1", "description1", "imageUrl");
-        ItemDisplay b = new ItemDisplay("title2", "title info1", "description1", "imageUrl");
-        ItemDisplay c = new ItemDisplay("title3", "title info1", "description1", "imageUrl");
-        ItemDisplay d = new ItemDisplay("title4", "title info1", "description1", "imageUrl");
-        ItemDisplay e = new ItemDisplay("title5", "title info1", "description1", "imageUrl");
-        ItemDisplay f = new ItemDisplay("title6", "title info1", "description1", "imageUrl");
-        ItemDisplay g = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-        ItemDisplay h = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-        ItemDisplay i = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-        ItemDisplay j = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-        ItemDisplay k = new ItemDisplay("title7", "title info1", "description1", "imageUrl");
-
-        itemList.add(a);
-        itemList.add(b);
-        itemList.add(c);
-        itemList.add(d);
-        itemList.add(e);
-        itemList.add(f);
-        itemList.add(g);
-
-        itemList.add(h);
-        itemList.add(i);
-        itemList.add(j);
-        itemList.add(k);
-
-    }
-
-    private void startPaymentActivity()
-    {
+    private void startPaymentActivity() {
         //itemAdapter.setViewType(ViewType.ALBUM);
         //Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
         //startActivity(myIntent);
-
     }
 }

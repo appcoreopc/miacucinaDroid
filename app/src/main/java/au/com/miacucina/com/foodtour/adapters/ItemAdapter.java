@@ -65,10 +65,27 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (imageUrl != null)
                 Picasso.with(itemView.getContext()).load(imageUrl).into(albumViewHolder.imageView);
         } else if (mViewType == ViewType.PROFILE) {
-            ProfileViewHolder albumViewHolder = (ProfileViewHolder) holder;
+
+            ProfileViewHolder profileViewHolder = (ProfileViewHolder) holder;
             ItemDisplay item = itemList.get(position);
-            albumViewHolder.title.setText(item.getTitle());
+            profileViewHolder.title.setText(item.getTitle());
             String imageUrl = itemList.get(position).getImageUrl();
+
+            switch (imageUrl) {
+                case "1":
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_card_giftcard_black_24px);
+                    break;
+                case "2":
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_card_giftcard_black_24px);
+                    break;
+                case "3":
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_settings_black_24px);
+                    break;
+                case "4":
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_savetrips_24px);
+                    break;
+            }
+
         } else if (mViewType == ViewType.STAGGERED) {
 
         }
