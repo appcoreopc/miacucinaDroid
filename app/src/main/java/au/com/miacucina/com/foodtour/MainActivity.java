@@ -22,6 +22,8 @@ import java.util.List;
 import au.com.miacucina.com.foodtour.Model.ItemDisplay;
 import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 import au.com.miacucina.com.foodtour.adapters.ItemClickSupport;
+import au.com.miacucina.com.foodtour.adapters.ViewType;
+import au.com.miacucina.com.foodtour.appDataResource.AppMenu;
 import au.com.miacucina.com.foodtour.managed.AlbumViewLayoutHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<ItemDisplay> itemList;
     private AlbumViewLayoutHandler coordinator;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +49,14 @@ public class MainActivity extends AppCompatActivity {
         itemAdapter = new ItemAdapter(itemList);
         itemAdapter.notifyDataSetChanged();
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+       mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
+
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 LinearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        itemAdapter.setViewType(ViewType.ALBUM);
         recyclerView.setAdapter(itemAdapter);
 
         // https://guides.codepath.com/android/using-the-recyclerview
@@ -74,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_explore:
+                        itemAdapter.setViewType(ViewType.ALBUM);
                         try {
                             renderAlbumViewOnRecycleView("https://jsonplaceholder.typicode.com/photos");
                         } catch (InterruptedException e) {
@@ -81,11 +88,21 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     case R.id.action_favourites:
+                        itemAdapter.setViewType(ViewType.ALBUM);
                         Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
                         startActivity(myIntent);
                         break;
                     case R.id.action_profile:
+                        itemList = (List<ItemDisplay>) AppMenu.getMenu();
+                        itemAdapter.setViewType(ViewType.PROFILE);
+                        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        recyclerView.setLayoutManager(mLayoutManager);
+                        recyclerView.setLayoutManager(mLayoutManager);
+                        recyclerView.setAdapter(itemAdapter);
 
+                        //itemAdapter.setItemList(itemList);
+                        //itemAdapter.notifyDataSetChanged();
+                        //itemAdapter.notifyDataSetChanged();
                 }
                 return true;
             }
