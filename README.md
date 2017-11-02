@@ -1,6 +1,6 @@
 # miacucinaDroid
-miacucina mobile app in android
 
+Developing a food tour apps on android. 
 
 Example layout:
 
