@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         itemList = new ArrayList<>();
         populateData();
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         itemAdapter = new ItemAdapter(itemList);
         itemAdapter.notifyDataSetChanged();
 
-       mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_explore:
-                        itemAdapter.setViewType(ViewType.ALBUM);
                         try {
                             renderAlbumViewOnRecycleView("https://jsonplaceholder.typicode.com/photos");
                         } catch (InterruptedException e) {
@@ -88,9 +87,12 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     case R.id.action_favourites:
-                        itemAdapter.setViewType(ViewType.ALBUM);
-                        Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
-                        startActivity(myIntent);
+                        try {
+                            renderAlbumViewOnRecycleView("https://jsonplaceholder.typicode.com/photos");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                         break;
                     case R.id.action_profile:
                         itemList = (List<ItemDisplay>) AppMenu.getMenu();
@@ -98,12 +100,8 @@ public class MainActivity extends AppCompatActivity {
                         itemAdapter.setViewType(ViewType.PROFILE);
                         mLayoutManager = new LinearLayoutManager(getApplicationContext());
                         recyclerView.setLayoutManager(mLayoutManager);
-                        recyclerView.setLayoutManager(mLayoutManager);
                         recyclerView.setAdapter(itemAdapter);
 
-                        //itemAdapter.setItemList(itemList);
-                        //itemAdapter.notifyDataSetChanged();
-                        //itemAdapter.notifyDataSetChanged();
                 }
                 return true;
             }
@@ -112,8 +110,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void renderAlbumViewOnRecycleView(String urlRequest) throws InterruptedException {
 
+        itemAdapter.setViewType(ViewType.ALBUM);
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+
         // we need to pass all the resources ref / data list //
         coordinator = new AlbumViewLayoutHandler(this.getApplicationContext(), itemAdapter, itemList);
+        recyclerView.setAdapter(itemAdapter);
+
         try {
             coordinator.renderLayout("https://jsonplaceholder.typicode.com/photos");
         } catch (InterruptedException e) {
@@ -181,6 +185,14 @@ public class MainActivity extends AppCompatActivity {
         itemList.add(i);
         itemList.add(j);
         itemList.add(k);
+
+    }
+
+    private void startPaymentActivity()
+    {
+        //itemAdapter.setViewType(ViewType.ALBUM);
+        //Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
+        //startActivity(myIntent);
 
     }
 }
