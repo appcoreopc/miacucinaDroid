@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +37,6 @@ import au.com.miacucina.com.foodtour.adapters.ItemClickSupport;
 import au.com.miacucina.com.foodtour.adapters.ViewType;
 import au.com.miacucina.com.foodtour.appDataResource.AppMenu;
 import au.com.miacucina.com.foodtour.managed.AlbumViewLayoutHandler;
-import au.com.miacucina.com.foodtour.util.LocationService;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         Criteria criteria = new Criteria();
-        String provider = locationManager.getBestProvider(criteria, false);
+        String provider = locationManager.getBestProvider(criteria, true);
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -66,14 +67,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        
         Location location = locationManager.getLastKnownLocation(provider);
 
         if (location != null) {
             System.out.println("Provider " + provider + " has been selected.");
             onLocationChanged(location);
         } else {
-            //latituteField.setText("Location not available");
-            //longitudeField.setText("Location not available");
+            Toast.makeText(this, "Current Lon/Lat is not available", Toast.LENGTH_SHORT).show();
         }
 
         setContentView(R.layout.activity_main);
@@ -206,6 +207,39 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(Location location) {
+
+//        double lat = location.getLatitude();
+//        double lng = location.getLongitude();
+//
+//        Geocoder geoCoder = new Geocoder(this, Locale.getDefault());
+//
+//        StringBuilder builder = new StringBuilder();
+//        try {
+//            List<Address> address = geoCoder.getFromLocation(lat, lng, 1);
+//            int maxLines = address.get(0).getMaxAddressLineIndex();
+//            for (int i = 0; i < maxLines; i++) {
+//                String addressStr = address.get(0).getAddressLine(i);
+//                builder.append(addressStr);
+//                builder.append(" ");
+//            }
+//
+//            String finalAddress = builder.toString(); //This is the complete address.
+//
+//            Toast.makeText(this,"Current Long/Loat" + lng + lat + " : complete address:" + finalAddress, Toast.LENGTH_SHORT);
+//
+//           /* latituteField.setText(String.valueOf(lat));
+//            longitudeField.setText(String.valueOf(lng));
+//            addressField.setText(fnialAddress); //This will display the final address.
+//            */
+//
+//        } catch (IOException e) {
+//            // Handle IOException
+//        } catch (NullPointerException e) {
+//            // Handle NullPointerException
+//        }
+
+
+        //You had this as int. It is advised to have Lat/Loing as double.
         double lat = location.getLatitude();
         double lng = location.getLongitude();
 
@@ -220,12 +254,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 builder.append(" ");
             }
 
-            String fnialAddress = builder.toString(); //This is the complete address.
+            String finalAddress = builder.toString(); //This is the complete address.
 
-           /* latituteField.setText(String.valueOf(lat));
-            longitudeField.setText(String.valueOf(lng));
-            addressField.setText(fnialAddress); //This will display the final address.
-            */
+            Toast.makeText(this, "Current Long/Loat" + lng + lat + " : complete address:" + finalAddress, Toast.LENGTH_SHORT);
+            //latituteField.setText(String.valueOf(lat));
+            //longitudeField.setText(String.valueOf(lng));
+            //addressField.setText(fnialAddress); //This will display the final address.
 
         } catch (IOException e) {
             // Handle IOException
