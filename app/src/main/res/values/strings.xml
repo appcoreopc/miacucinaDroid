@@ -17,8 +17,11 @@
     <string name="countryIntentCode">Country</string>
     <string name="cityIntentCode">City</string>
 
+    <string name="selectCountry">Select country</string>
+    <string name="selectCity">Select city</string>
+
     <string-array name="countries">
-        <item>Select country</item>
+        <item>@string/selectCountry</item>
         <item>Malaysia</item>
         <item>United States</item>
         <item>Indonesia</item>
@@ -30,7 +33,7 @@
     </string-array>
 
     <string-array name="cities">
-        <item>Select city</item>
+        <item>@string/selectCity</item>
         <item>Auckland</item>
         <item>Melbourne</item>
         <item>Adelaide</item>

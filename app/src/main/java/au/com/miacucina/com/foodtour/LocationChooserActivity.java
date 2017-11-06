@@ -81,6 +81,7 @@ public class LocationChooserActivity extends AppCompatActivity
         });
     }
 
+
     private void getTargetTour()
     {
         if (citySpinner != null && countrySpinner != null)
@@ -88,7 +89,7 @@ public class LocationChooserActivity extends AppCompatActivity
             String country = (String) countrySpinner.getSelectedItem();
             String city = (String) citySpinner.getSelectedItem();
 
-            if (country != null && city != null && country != "Select country" && city != "Select city") {
+            if (country != null && city != null && country != getResources().getString(R.string.selectCountry) && city != getResources().getString(R.string.selectCountry)) {
                 Intent mainIntent = new Intent(LocationChooserActivity.this, MainActivity.class);
 
                 mainIntent.putExtra("country", country);

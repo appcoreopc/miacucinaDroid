@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private AlbumViewLayoutHandler coordinator;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private SwipeRefreshLayout mainContentSwipeRefresh;
+
     LocationManager locationManager;
 
     @Override
@@ -55,14 +58,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         Intent intent = getIntent();
 
-        if (intent!= null)
-        {
+        if (intent != null) {
             String city = intent.getStringExtra("city");
             String country = intent.getStringExtra("country");
         }
 
-
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+
+
 
         Criteria criteria = new Criteria();
         String provider = locationManager.getBestProvider(criteria, true);
@@ -93,6 +97,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         itemList = new ArrayList<>();
         itemList = (List<ItemDisplay>) AppMenu.populateData();
+
+        mainContentSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshMainContent);
+
+        if (mainContentSwipeRefresh != null) {
+
+            mainContentSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    refreshAdapterContent();
+                }
+            });
+        };
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         itemAdapter = new ItemAdapter(itemList);
@@ -143,11 +160,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         break;
                     case R.id.action_profile:
                         loadProfileLayout();
-
                 }
                 return true;
             }
         });
+    }
+
+    private void refreshAdapterContent() {
+        mainContentSwipeRefresh.setRefreshing(false);
     }
 
     private void loadProfileLayout() {
