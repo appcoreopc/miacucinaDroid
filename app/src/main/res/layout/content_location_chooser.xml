@@ -7,38 +7,36 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="au.com.miacucina.com.foodtour.LocationChooserActivity"
-    tools:showIn="@layout/app_bar_location_chooser">
+    tools:showIn="@layout/app_bar_location_chooser"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/countryTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/choose_contry"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="148dp" />
+        android:paddingLeft="10dp"
+        />
 
     <Spinner
         android:id="@+id/countrySpinner"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="114dp" android:entries="@array/countries"
+        android:entries="@array/countries"
          />
 
     <TextView
         android:id="@+id/cityTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/choose_city"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="75dp" />
+     />
 
     <Spinner
         android:id="@+id/citySpinner"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/cities"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="158dp" />
+        />
 
 </android.support.v7.widget.LinearLayoutCompat>

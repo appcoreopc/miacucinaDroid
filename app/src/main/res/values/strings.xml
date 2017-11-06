@@ -11,7 +11,7 @@
     <string name="text_profile">Profile</string>
     <string name="title_activity_location_chooser">LocationChooserActivity</string>
 
-    <string name="choose_contry">Country</string>
+    <string name="choose_contry">Begin your tour here</string>
     <string name="choose_city">City</string>
 
     <string name="countryIntentCode">Country</string>
