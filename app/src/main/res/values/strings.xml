@@ -9,4 +9,33 @@
     <string name="text_favourites">Favourites</string>
     <string name="text_inbox">Inbox</string>
     <string name="text_profile">Profile</string>
+    <string name="title_activity_location_chooser">LocationChooserActivity</string>
+
+    <string name="choose_contry">Country</string>
+    <string name="choose_city">City</string>
+
+    <string name="countryIntentCode">Country</string>
+    <string name="cityIntentCode">City</string>
+
+    <string-array name="countries">
+        <item>Select country</item>
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+
+    <string-array name="cities">
+        <item>Select city</item>
+        <item>Auckland</item>
+        <item>Melbourne</item>
+        <item>Adelaide</item>
+        <item>Sydney</item>
+   </string-array>
+
+
 </resources>

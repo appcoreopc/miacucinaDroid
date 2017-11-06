@@ -1,6 +1,5 @@
 package au.com.miacucina.com.foodtour.util;
 
-
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;

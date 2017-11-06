@@ -2,6 +2,7 @@ package au.com.miacucina.com.foodtour;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -52,6 +53,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+
+        if (intent!= null)
+        {
+            String city = intent.getStringExtra("city");
+            String country = intent.getStringExtra("country");
+        }
+
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         Criteria criteria = new Criteria();
@@ -67,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        
+
         Location location = locationManager.getLastKnownLocation(provider);
 
         if (location != null) {
