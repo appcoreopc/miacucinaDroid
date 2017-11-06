@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -91,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // Enable the Up button
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         itemList = new ArrayList<>();
         itemList = (List<ItemDisplay>) AppMenu.populateData();
@@ -152,18 +157,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         });
     }
 
-    private void setupSwipeRefreshLayout() {
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 
+    private void setupSwipeRefreshLayout() {
         mainContentSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshMainContent);
         if (mainContentSwipeRefresh != null) {
-
             mainContentSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
                     refreshAdapterContent();
                 }
             });
-        };
+        }
     }
 
     private void refreshAdapterContent() {
