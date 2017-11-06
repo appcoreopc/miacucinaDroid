@@ -65,9 +65,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-
-
-
         Criteria criteria = new Criteria();
         String provider = locationManager.getBestProvider(criteria, true);
 
@@ -98,18 +95,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         itemList = new ArrayList<>();
         itemList = (List<ItemDisplay>) AppMenu.populateData();
 
-        mainContentSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshMainContent);
-
-        if (mainContentSwipeRefresh != null) {
-
-            mainContentSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    refreshAdapterContent();
-                }
-            });
-        };
-
+        setupSwipeRefreshLayout();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         itemAdapter = new ItemAdapter(itemList);
@@ -164,6 +150,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 return true;
             }
         });
+    }
+
+    private void setupSwipeRefreshLayout() {
+
+        mainContentSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshMainContent);
+        if (mainContentSwipeRefresh != null) {
+
+            mainContentSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    refreshAdapterContent();
+                }
+            });
+        };
     }
 
     private void refreshAdapterContent() {
