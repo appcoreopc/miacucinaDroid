@@ -12,7 +12,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:textViewStyle">@style/Widget.TextView.Custom</item>
+        <item name="android:textViewStyle">@style/Widget.TextView.Default</item>
         <item name="android:spinnerItemStyle">@style/Widget.Spinner.Custom</item>
     </style>
 
@@ -20,13 +20,17 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="Widget.TextView.Custom" parent="android:Widget.TextView">
-        <item name="android:textColor">#00FF00</item>
+    <style name="Widget.TextView.Default" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/defaultText</item>
+    </style>
+
+    <style name="TextViewTitle" parent="android:Widget.TextView">
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="Widget.Spinner.Custom" parent="android:Widget.Spinner">
-        <item name="android:textColor">#000</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/defaultText</item>
+        <item name="android:textSize">@dimen/textDefault</item>
     </style>
 
 </resources>
