@@ -10,6 +10,7 @@
     tools:showIn="@layout/app_bar_location_chooser"
     android:gravity="center">
 
+
     <TextView
         android:id="@+id/countryTextView"
         android:layout_width="match_parent"
