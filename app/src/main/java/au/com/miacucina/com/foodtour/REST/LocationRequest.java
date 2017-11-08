@@ -10,12 +10,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONObject;
-
-import java.util.List;
-
-import au.com.miacucina.com.foodtour.Model.TourLocationModel;
-
 public class LocationRequest implements TourLocation {
 
     private Context _context;

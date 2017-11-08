@@ -1,4 +1,4 @@
-package au.com.miacucina.com.foodtour.Model;
+package au.com.miacucina.com.foodtour.model;
 
 
 public class TourLocationModel {

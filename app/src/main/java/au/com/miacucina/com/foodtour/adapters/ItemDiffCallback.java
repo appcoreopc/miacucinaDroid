@@ -4,7 +4,7 @@ import android.support.v7.util.DiffUtil;
 
 import java.util.List;
 
-import au.com.miacucina.com.foodtour.Model.ItemDisplay;
+import au.com.miacucina.com.foodtour.model.ItemDisplay;
 
 /**
  * Created by Jeremy on 10/30/2017.
