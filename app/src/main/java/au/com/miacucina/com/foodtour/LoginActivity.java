@@ -3,6 +3,7 @@ package au.com.miacucina.com.foodtour;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -29,6 +30,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,21 +107,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         callbackManager = CallbackManager.Factory.create();
 
+        final Context ctx = getApplicationContext();
+
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         // App code
+                        Toast.makeText(ctx, "login successful", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onCancel() {
                         // App code
+                        Toast.makeText(ctx, "login cancel", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
                         // App code
+                        Toast.makeText(ctx, "login failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
 
