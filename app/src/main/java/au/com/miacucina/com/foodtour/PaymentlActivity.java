@@ -60,7 +60,6 @@ public class PaymentlActivity extends AppCompatActivity {
 
         _context = getApplicationContext();
 
-
         getClientToken();
 
         paypalButton.setOnClickListener(new View.OnClickListener() {

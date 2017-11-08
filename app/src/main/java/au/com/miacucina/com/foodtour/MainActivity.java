@@ -150,7 +150,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         }
                         break;
                     case R.id.action_profile:
-                        loadProfileLayout();
+                        Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
+                        startActivity(myIntent);
+                        //loadProfileLayout();
                 }
                 return true;
             }
