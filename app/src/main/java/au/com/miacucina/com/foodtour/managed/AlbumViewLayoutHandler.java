@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.List;
-import au.com.miacucina.com.foodtour.Model.ItemDisplay;
+import au.com.miacucina.com.foodtour.model.ItemDisplay;
 import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 
 public class AlbumViewLayoutHandler implements LayoutViewHandler {

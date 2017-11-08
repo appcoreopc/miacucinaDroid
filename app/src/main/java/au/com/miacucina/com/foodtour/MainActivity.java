@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import au.com.miacucina.com.foodtour.Model.ItemDisplay;
+import au.com.miacucina.com.foodtour.model.ItemDisplay;
 import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 import au.com.miacucina.com.foodtour.adapters.ItemClickSupport;
 import au.com.miacucina.com.foodtour.adapters.ViewType;

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
-import au.com.miacucina.com.foodtour.Model.ItemDisplay;
+import au.com.miacucina.com.foodtour.model.ItemDisplay;
 import au.com.miacucina.com.foodtour.R;
 
 public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

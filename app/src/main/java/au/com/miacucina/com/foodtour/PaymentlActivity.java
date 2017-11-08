@@ -8,10 +8,16 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import au.com.miacucina.com.foodtour.model.ClientToken;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import retrofit.Callback;
 
 import com.google.android.gms.wallet.Cart;
 
@@ -25,6 +31,7 @@ import org.json.JSONException;
 import java.util.Collections;
 
 import au.com.miacucina.com.foodtour.payment.Settings;
+import au.com.miacucina.com.foodtour.util.PaymentApp;
 
 public class PaymentlActivity extends AppCompatActivity {
 
@@ -50,7 +57,11 @@ public class PaymentlActivity extends AppCompatActivity {
         });
 
         Button paypalButton = (Button) findViewById(R.id.paypalButton);
+
         _context = getApplicationContext();
+
+
+        getClientToken();
 
         paypalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +75,41 @@ public class PaymentlActivity extends AppCompatActivity {
         DropInRequest dropInRequest = new DropInRequest().clientToken("");
         startActivityForResult(dropInRequest.getIntent(this.getApplicationContext()), DROP_IN_REQUEST);
     }
+
+    private void getClientToken() {
+
+
+        if (mAuthorization != null) {
+            //onAuthorizationFetched();
+        } else if (Settings.useTokenizationKey(this)) {
+            mAuthorization = Settings.getEnvironmentTokenizationKey(this);
+            //onAuthorizationFetched();
+        } else {
+            PaymentApp.getApiClient(this).getClientToken(Settings.getCustomerId(this),
+                    Settings.getMerchantAccountId(this), new Callback<ClientToken>() {
+
+                        @Override
+                        public void success(ClientToken clientToken, Response response) {
+                            if (TextUtils.isEmpty(clientToken.getClientToken())) {
+                                //showDialog("Client token was empty");
+                            } else {
+                                mAuthorization = clientToken.getClientToken();
+                                //onAuthorizationFetched();
+                            }
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            //showDialog("Unable to get a client token. Response Code: " +
+                            //        error.getResponse().getStatus() + " Response body: " +
+                             //       error.getResponse().getBody());
+                        }
+                    });
+
+        }
+    }
+
+
 
     private void OpenDropIn() {
         DropInRequest dropInRequest = new DropInRequest()

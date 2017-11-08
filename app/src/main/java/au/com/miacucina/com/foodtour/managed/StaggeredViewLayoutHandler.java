@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import au.com.miacucina.com.foodtour.Model.ItemDisplay;
+import au.com.miacucina.com.foodtour.model.ItemDisplay;
 import au.com.miacucina.com.foodtour.adapters.ItemAdapter;
 
 public class StaggeredViewLayoutHandler implements LayoutViewHandler {

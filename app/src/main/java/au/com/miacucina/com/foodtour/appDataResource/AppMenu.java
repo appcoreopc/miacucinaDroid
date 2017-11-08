@@ -3,7 +3,7 @@ package au.com.miacucina.com.foodtour.appDataResource;
 import java.util.ArrayList;
 import java.util.List;
 
-import au.com.miacucina.com.foodtour.Model.ItemDisplay;
+import au.com.miacucina.com.foodtour.model.ItemDisplay;
 
 public class AppMenu {
 
