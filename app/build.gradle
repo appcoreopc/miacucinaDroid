@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -26,10 +27,7 @@ dependencies {
     })
 
     compile 'com.braintreepayments.api:drop-in:3.1.0'
-
-
-
-
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.braintreepayments.api:drop-in:3.1.0'
     compile 'com.android.support:appcompat-v7:26.0.0'
     compile 'com.braintreepayments.api:braintree:2.7.0'
