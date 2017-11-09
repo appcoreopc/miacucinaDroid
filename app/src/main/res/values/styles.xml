@@ -24,12 +24,12 @@
         <item name="android:textColor">@color/defaultText</item>
     </style>
 
-    <style name="TextViewTitle" parent="android:Widget.TextView">
+    <style name="TextViewTitle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="Widget.Spinner.Custom" parent="android:Widget.Spinner">
-        <item name="android:textColor">@color/defaultText</item>
+    <style name="Widget.Spinner.Custom" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+
         <item name="android:textSize">@dimen/textDefault</item>
     </style>
 
