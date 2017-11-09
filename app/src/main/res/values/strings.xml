@@ -58,4 +58,8 @@
     </string>
     <string name="skip_login">Skip Login</string>
     <string name="terms_condition">Agree terms and condition</string>
+
+    <string name="main_filter_text">Filter</string>
+
+
 </resources>
