@@ -16,6 +16,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -94,9 +95,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Enable the Up button
+/*
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+*/
 
         itemList = new ArrayList<>();
         itemList = (List<ItemDisplay>) AppMenu.populateData();
@@ -116,6 +119,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         itemAdapter.setViewType(ViewType.ALBUM);
         recyclerView.setAdapter(itemAdapter);
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
 
         // https://guides.codepath.com/android/using-the-recyclerview
         // https://jsonplaceholder.typicode.com/photos
