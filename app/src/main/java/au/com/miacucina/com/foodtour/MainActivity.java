@@ -120,13 +120,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         itemAdapter.setViewType(ViewType.ALBUM);
         recyclerView.setAdapter(itemAdapter);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
 
         // https://guides.codepath.com/android/using-the-recyclerview
         // https://jsonplaceholder.typicode.com/photos
@@ -162,9 +160,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         }
                         break;
                     case R.id.action_profile:
-                        Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
-                        startActivity(myIntent);
-                        //loadProfileLayout();
+                        //Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
+                        //startActivity(myIntent);
+                        loadProfileLayout();
                 }
                 return true;
             }

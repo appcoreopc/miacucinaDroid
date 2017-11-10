@@ -58,8 +58,16 @@
     </string>
     <string name="skip_login">Skip Login</string>
     <string name="terms_condition">Agree terms and condition</string>
-
     <string name="main_filter_text">Filter</string>
 
+    <string name="saved_tours">Saved Tour</string>
+    <string name="my_tours">My Tour</string>
+    <string name="search_food_tour">Search Tours</string>
+    <string name="how_it_works">How it works</string>
+
+    <string name="about_us">About us</string>
+    <string name="contact_us">Contact us</string>
+    <string name="trip_advisor">Trip Advisor reviews</string>
+    <string name="logout">Logout</string>
 
 </resources>
