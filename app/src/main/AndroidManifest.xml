@@ -66,7 +66,7 @@
             android:name=".TourMapsActivity"
             android:label="@string/title_activity_tour_maps" />
         <activity
-            android:name=".PaymentlActivity"
+            android:name=".PaymentActivity"
             android:label="@string/title_activity_paypal"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -86,9 +86,14 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
-
-
         </activity>
+
+        <activity
+            android:name=".CreateTransactionActivity"
+            android:label="@string/title_activity_login">
+        </activity>
+
+
     </application>
 
 </manifest>

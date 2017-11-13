@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         }
                         break;
                     case R.id.action_profile:
-                        // myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
+                        // myIntent = new Intent(MainActivity.this, PaymentActivity.class);
                         //startActIntentivity(myIntent);
                         loadProfileLayout();
                 }
@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void startPaymentActivity() {
         //itemAdapter.setViewType(ViewType.ALBUM);
-        //Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
+        //Intent myIntent = new Intent(MainActivity.this, PaymentActivity.class);
         //startActivity(myIntent);
     }
 

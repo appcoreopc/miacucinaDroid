@@ -42,7 +42,9 @@
         <item>Adelaide</item>
         <item>Sydney</item>
     </string-array>
+
     <string name="title_activity_login">Sign in</string>
+    <string name="paypal_startpayment">Payment</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

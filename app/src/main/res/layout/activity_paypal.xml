@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="au.com.miacucina.com.foodtour.PaymentlActivity">
+    tools:context="au.com.miacucina.com.foodtour.PaymentActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -38,8 +38,19 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center_vertical|left" />
 
+
     <include
         android:id="@+id/include"
         layout="@layout/content_paypal" />
+
+    <Button
+        android:id="@+id/paypalPurchase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|left"
+        android:onClick="purchase"
+        android:text="Purchase"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="center_vertical|right" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+
 import com.braintreepayments.api.BraintreeFragment;
 import com.braintreepayments.api.interfaces.BraintreeCancelListener;
 import com.braintreepayments.api.interfaces.BraintreeErrorListener;
@@ -21,6 +22,7 @@ import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener;
 import com.braintreepayments.api.models.PaymentMethodNonce;
 import com.paypal.android.sdk.onetouch.core.PayPalOneTouchCore;
 import com.braintreepayments.api.internal.SignatureVerificationOverrides;
+
 import au.com.miacucina.com.foodtour.model.ClientToken;
 import au.com.miacucina.com.foodtour.payment.Settings;
 import au.com.miacucina.com.foodtour.util.PaymentApp;
@@ -237,7 +239,6 @@ public abstract class PaymentBaseActivity extends AppCompatActivity implements A
 
         return true;
     }
-
 
 
 }

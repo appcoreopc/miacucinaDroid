@@ -1,12 +1,17 @@
 package au.com.miacucina.com.foodtour;
-import  au.com.miacucina.com.foodtour.payment.Settings;
+
+import au.com.miacucina.com.foodtour.payment.Settings;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import au.com.miacucina.com.foodtour.model.Transaction;
+
 import com.braintreepayments.api.models.CardNonce;
 import com.braintreepayments.api.models.PaymentMethodNonce;
 
@@ -42,7 +47,6 @@ public class CreateTransactionActivity extends AppCompatActivity {
         //setContentView(R.layout.create_transaction_activity);
         //mLoadingSpinner = findViewById(R.id.loading_spinner);
         //setTitle(R.string.processing_transaction);
-
         sendNonceToServer((PaymentMethodNonce) getIntent().getParcelableExtra(EXTRA_PAYMENT_METHOD_NONCE));
     }
 
@@ -53,13 +57,16 @@ public class CreateTransactionActivity extends AppCompatActivity {
                 if (transaction.getMessage() != null &&
                         transaction.getMessage().startsWith("created")) {
                     //setStatus(R.string.transaction_complete);
-                    setMessage(transaction.getMessage());
+                    String msg = transaction.getMessage();
+                    setMessage(msg);
                 } else {
-                   //setStatus(R.string.transaction_failed);
+                    //setStatus(R.string.transaction_failed);
                     if (TextUtils.isEmpty(transaction.getMessage())) {
                         setMessage("Server response was empty or malformed");
                     } else {
-                        setMessage(transaction.getMessage());
+                        String msg = transaction.getMessage();
+                        Log.i("APP", msg);
+                        setMessage(msg);
                     }
                 }
             }
@@ -97,7 +104,7 @@ public class CreateTransactionActivity extends AppCompatActivity {
     }
 
     private void setMessage(String message) {
-        mLoadingSpinner.setVisibility(View.GONE);
+        //mLoadingSpinner.setVisibility(View.GONE);
         //TextView textView = findViewById(R.id.transaction_message);
         //textView.setText(message);
         //textView.setVisibility(View.VISIBLE);
