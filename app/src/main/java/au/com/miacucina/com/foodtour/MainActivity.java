@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
 import com.facebook.FacebookSdk;
 
 import au.com.miacucina.com.foodtour.model.ItemDisplay;
@@ -160,8 +161,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         }
                         break;
                     case R.id.action_profile:
-                        //Intent myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
-                        //startActivity(myIntent);
+                        // myIntent = new Intent(MainActivity.this, PaymentlActivity.class);
+                        //startActIntentivity(myIntent);
                         loadProfileLayout();
                 }
                 return true;
