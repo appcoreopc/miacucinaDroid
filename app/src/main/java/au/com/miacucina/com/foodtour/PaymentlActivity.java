@@ -19,6 +19,13 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.Callback;
 
+import com.braintreepayments.api.BraintreeFragment;
+import com.braintreepayments.api.dropin.BaseActivity;
+import com.braintreepayments.api.dropin.DropInResult;
+import com.braintreepayments.api.exceptions.InvalidArgumentException;
+import com.braintreepayments.api.interfaces.BraintreeCancelListener;
+import com.braintreepayments.api.interfaces.BraintreeErrorListener;
+import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener;
 import com.google.android.gms.wallet.Cart;
 
 import com.braintreepayments.api.PayPal;
@@ -33,7 +40,14 @@ import java.util.Collections;
 import au.com.miacucina.com.foodtour.payment.Settings;
 import au.com.miacucina.com.foodtour.util.PaymentApp;
 
-public class PaymentlActivity extends AppCompatActivity {
+import static android.view.View.VISIBLE;
+
+
+
+
+public class PaymentlActivity extends PaymentBaseActivity implements PaymentMethodNonceCreatedListener,
+        BraintreeCancelListener, BraintreeErrorListener, DropInResult.DropInResultListener
+{
 
     public static String EXTRA_PAYMENT = "TOUR_PAYMENT";
     public static int RESULT_EXTRAS_INVALID = -1;
@@ -104,11 +118,8 @@ public class PaymentlActivity extends AppCompatActivity {
                              //       error.getResponse().getBody());
                         }
                     });
-
         }
     }
-
-
 
     private void OpenDropIn() {
         DropInRequest dropInRequest = new DropInRequest()
@@ -170,4 +181,38 @@ public class PaymentlActivity extends AppCompatActivity {
                 .build();
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    protected void reset() {
+
+    }
+
+    private boolean mPurchased = false;
+
+
+    @Override
+    protected void onAuthorizationFetched() {
+        try {
+            mBraintreeFragment = BraintreeFragment.newInstance(this, mAuthorization);
+
+            if (com.braintreepayments.api.models.ClientToken.fromString(mAuthorization) instanceof com.braintreepayments.api.models.ClientToken) {
+                DropInResult.fetchDropInResult(this, mAuthorization, this);
+            } else {
+               // mAddPaymentMethodButton.setVisibility(VISIBLE);
+            }
+        } catch (InvalidArgumentException e) {
+            showDialog(e.getMessage());
+        }
+    }
+
+    @Override
+    public void onResult(DropInResult result) {
+
+    }
 }
