@@ -113,7 +113,6 @@ public class CreateTransactionActivity extends AppCompatActivity {
         //status.setVisibility(View.VISIBLE);
     }
 
-
     private void setMessage(String message) {
 
         //mLoadingSpinner.setVisibility(View.GONE);
