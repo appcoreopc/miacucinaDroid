@@ -1,22 +1,15 @@
 package au.com.miacucina.com.foodtour;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import au.com.miacucina.com.foodtour.model.ClientToken;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import retrofit.Callback;
 
 import com.braintreepayments.api.AndroidPay;
 import com.braintreepayments.api.BraintreeFragment;
@@ -29,40 +22,29 @@ import com.braintreepayments.api.interfaces.BraintreeErrorListener;
 import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener;
 import com.braintreepayments.api.models.AndroidPayCardNonce;
 import com.braintreepayments.api.models.CardNonce;
+import com.braintreepayments.api.models.ClientToken;
 import com.braintreepayments.api.models.PayPalAccountNonce;
 import com.braintreepayments.api.models.PaymentMethodNonce;
 import com.braintreepayments.api.models.VenmoAccountNonce;
 import com.google.android.gms.identity.intents.model.CountrySpecification;
 import com.google.android.gms.wallet.Cart;
-
 import com.braintreepayments.api.PayPal;
 import com.braintreepayments.api.dropin.DropInRequest;
 import com.google.android.gms.wallet.LineItem;
-import com.paypal.android.sdk.payments.PaymentConfirmation;
-
-import org.json.JSONException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 import au.com.miacucina.com.foodtour.payment.Settings;
-import au.com.miacucina.com.foodtour.util.PaymentApp;
-
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 
 public class PaymentActivity extends PaymentBaseActivity implements PaymentMethodNonceCreatedListener,
         BraintreeCancelListener, BraintreeErrorListener, DropInResult.DropInResultListener {
 
-    public static String EXTRA_PAYMENT = "TOUR_PAYMENT";
-    public static int RESULT_EXTRAS_INVALID = -1;
     private Context _context;
-    private String mAuthorization = "sandbox_7887vzbv_cg3rjqtqw8j7crr5";
     private boolean mPurchased = false;
     private PaymentMethodType mPaymentMethodType;
     private boolean mShouldMakePurchase = false;
     private PaymentMethodNonce mNonce;
+    private static final int DROP_IN_REQUEST = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +66,6 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
 
         _context = getApplicationContext();
 
-        getClientToken();
 
         paypalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,42 +74,6 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
                 OpenDropIn();
             }
         });
-
-        int DROP_IN_REQUEST = 2;
-        DropInRequest dropInRequest = new DropInRequest().clientToken("");
-        startActivityForResult(dropInRequest.getIntent(this.getApplicationContext()), DROP_IN_REQUEST);
-    }
-
-    private void getClientToken() {
-
-
-        if (mAuthorization != null) {
-            //onAuthorizationFetched();
-        } else if (Settings.useTokenizationKey(this)) {
-            mAuthorization = Settings.getEnvironmentTokenizationKey(this);
-            //onAuthorizationFetched();
-        } else {
-            PaymentApp.getApiClient(this).getClientToken(Settings.getCustomerId(this),
-                    Settings.getMerchantAccountId(this), new Callback<ClientToken>() {
-
-                        @Override
-                        public void success(ClientToken clientToken, Response response) {
-                            if (TextUtils.isEmpty(clientToken.getClientToken())) {
-                                //showDialog("Client token was empty");
-                            } else {
-                                mAuthorization = clientToken.getClientToken();
-                                //onAuthorizationFetched();
-                            }
-                        }
-
-                        @Override
-                        public void failure(RetrofitError error) {
-                            //showDialog("Unable to get a client token. Response Code: " +
-                            //        error.getResponse().getStatus() + " Response body: " +
-                            //       error.getResponse().getBody());
-                        }
-                    });
-        }
     }
 
     private void OpenDropIn() {
@@ -164,9 +109,6 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
         }
     }
 
-    int DROP_IN_REQUEST = 2000;
-    String mClientToken = "";
-
     private Cart getAndroidPayCart() {
         return Cart.newBuilder()
                 .setCurrencyCode(Settings.getAndroidPayCurrency(this))
@@ -191,13 +133,13 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
             //clearNonce();
 
             try {
-                if (com.braintreepayments.api.models.ClientToken.fromString(mAuthorization) instanceof com.braintreepayments.api.models.ClientToken) {
+                if (ClientToken.fromString(mAuthorization) instanceof com.braintreepayments.api.models.ClientToken) {
                     DropInResult.fetchDropInResult(this, mAuthorization, this);
                 } else {
-                   // mAddPaymentMethodButton.setVisibility(VISIBLE);
+                    // mAddPaymentMethodButton.setVisibility(VISIBLE);
                 }
             } catch (InvalidArgumentException e) {
-               // mAddPaymentMethodButton.setVisibility(VISIBLE);
+                // mAddPaymentMethodButton.setVisibility(VISIBLE);
             }
         }
     }
@@ -206,7 +148,6 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
     protected void reset() {
 
     }
-
 
 
     @Override
@@ -226,7 +167,7 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
         try {
             mBraintreeFragment = BraintreeFragment.newInstance(this, mAuthorization);
 
-            if (com.braintreepayments.api.models.ClientToken.fromString(mAuthorization) instanceof com.braintreepayments.api.models.ClientToken) {
+            if (ClientToken.fromString(mAuthorization) instanceof com.braintreepayments.api.models.ClientToken) {
                 DropInResult.fetchDropInResult(this, mAuthorization, this);
             } else {
                 // mAddPaymentMethodButton.setVisibility(VISIBLE);
@@ -323,6 +264,8 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
 
             details = "Username: " + venmoAccountNonce.getUsername();
         }
+
+        Toast.makeText(_context, details, Toast.LENGTH_SHORT).show();
 
         //mNonceDetails.setText(details);
         //mNonceDetails.setVisibility(VISIBLE);

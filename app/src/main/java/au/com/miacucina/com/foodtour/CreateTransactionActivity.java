@@ -2,6 +2,7 @@ package au.com.miacucina.com.foodtour;
 
 import au.com.miacucina.com.foodtour.payment.Settings;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -26,6 +27,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.braintreepayments.api.models.CardNonce;
 import com.braintreepayments.api.models.PaymentMethodNonce;
@@ -38,8 +40,8 @@ import retrofit.client.Response;
 public class CreateTransactionActivity extends AppCompatActivity {
 
     public static final String EXTRA_PAYMENT_METHOD_NONCE = "nonce";
-
     private ProgressBar mLoadingSpinner;
+    private Context mcontext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +49,13 @@ public class CreateTransactionActivity extends AppCompatActivity {
         //setContentView(R.layout.create_transaction_activity);
         //mLoadingSpinner = findViewById(R.id.loading_spinner);
         //setTitle(R.string.processing_transaction);
+        mcontext = getApplicationContext();
+
         sendNonceToServer((PaymentMethodNonce) getIntent().getParcelableExtra(EXTRA_PAYMENT_METHOD_NONCE));
     }
 
     private void sendNonceToServer(PaymentMethodNonce nonce) {
+
         Callback<Transaction> callback = new Callback<Transaction>() {
             @Override
             public void success(Transaction transaction, Response response) {
@@ -58,13 +63,17 @@ public class CreateTransactionActivity extends AppCompatActivity {
                         transaction.getMessage().startsWith("created")) {
                     //setStatus(R.string.transaction_complete);
                     String msg = transaction.getMessage();
+                    Toast.makeText(mcontext, msg, Toast.LENGTH_SHORT).show();
                     setMessage(msg);
                 } else {
                     //setStatus(R.string.transaction_failed);
                     if (TextUtils.isEmpty(transaction.getMessage())) {
-                        setMessage("Server response was empty or malformed");
+                        String msg = "Server response was empty or malformed";
+                        setMessage(msg);
+                        Toast.makeText(mcontext, msg, Toast.LENGTH_SHORT).show();
                     } else {
                         String msg = transaction.getMessage();
+                        Toast.makeText(mcontext, msg, Toast.LENGTH_SHORT).show();
                         Log.i("APP", msg);
                         setMessage(msg);
                     }
@@ -96,6 +105,7 @@ public class CreateTransactionActivity extends AppCompatActivity {
     }
 
     private void setStatus(int message) {
+
         mLoadingSpinner.setVisibility(View.GONE);
         setTitle(message);
         //TextView status = findViewById(R.id.transaction_status);
@@ -103,7 +113,9 @@ public class CreateTransactionActivity extends AppCompatActivity {
         //status.setVisibility(View.VISIBLE);
     }
 
+
     private void setMessage(String message) {
+
         //mLoadingSpinner.setVisibility(View.GONE);
         //TextView textView = findViewById(R.id.transaction_message);
         //textView.setText(message);
