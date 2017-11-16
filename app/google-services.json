@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "241514392133",
+    "project_id": "miacucinamap-1506896124076"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241514392133:android:eccd536ded65251d",
+        "android_client_info": {
+          "package_name": "au.com.miacucina.com.foodtour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241514392133-qio4871kgfqvu3t94rm1hudq4nj20l8h.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "241514392133-p0b79bma8118lf1gpjfa5gi5n1qg5ddl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "au.com.miacucina.com.foodtour",
+            "certificate_hash": "e161af9b2c20510315160d684a2b044e957e6f8b"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3EvPG_qa6ajfO5-Y6VZKo-I-k9ONKZYw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
