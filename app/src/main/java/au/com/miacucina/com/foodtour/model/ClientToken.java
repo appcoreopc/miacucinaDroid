@@ -1,6 +1,5 @@
 package au.com.miacucina.com.foodtour.model;
 
-
 import com.google.gson.annotations.SerializedName;
 
 public class ClientToken {

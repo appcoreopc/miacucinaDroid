@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
     private GoogleSignInClient mGoogleSignInClient;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,13 +105,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        mContext = getApplicationContext();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail().build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
         // Skip login click
-
         Button btn = (Button) findViewById(R.id.skipLogin);
         btn.setOnClickListener(new OnClickListener() {
             @Override
@@ -180,7 +180,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // check if user already signed in.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         //updateUI(account);
-
         // if account not null, google already sign in.
 
     }
@@ -456,12 +455,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
+            Toast.makeText(mContext, "Google SSO OK good", Toast.LENGTH_SHORT).show();
             // Signed in successfully, show authenticated UI.
             // updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
             Log.w("GOOGLE-SSO", "signInResult:failed code=" + e.getStatusCode());
             //updateUI(null);
         }

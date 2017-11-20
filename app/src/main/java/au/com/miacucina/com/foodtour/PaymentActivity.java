@@ -31,6 +31,7 @@ import com.google.android.gms.wallet.Cart;
 import com.braintreepayments.api.PayPal;
 import com.braintreepayments.api.dropin.DropInRequest;
 import com.google.android.gms.wallet.LineItem;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -221,7 +222,6 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
         }
     }
 
-
     private void displayResult(PaymentMethodNonce paymentMethodNonce, String deviceData) {
         mNonce = paymentMethodNonce;
         mPaymentMethodType = PaymentMethodType.forType(mNonce);
@@ -261,7 +261,6 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
             //details += "Shipping address: " + formatAddress(androidPayCardNonce.getShippingAddress());
         } else if (mNonce instanceof VenmoAccountNonce) {
             VenmoAccountNonce venmoAccountNonce = (VenmoAccountNonce) mNonce;
-
             details = "Username: " + venmoAccountNonce.getUsername();
         }
 
@@ -269,10 +268,8 @@ public class PaymentActivity extends PaymentBaseActivity implements PaymentMetho
 
         //mNonceDetails.setText(details);
         //mNonceDetails.setVisibility(VISIBLE);
-
         //mDeviceData.setText("Device Data: " + deviceData);
         //mDeviceData.setVisibility(VISIBLE);
-
         //mAddPaymentMethodButton.setVisibility(GONE);
         //mPurchaseButton.setEnabled(true);
     }

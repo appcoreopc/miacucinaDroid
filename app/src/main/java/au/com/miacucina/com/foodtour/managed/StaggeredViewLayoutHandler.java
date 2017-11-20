@@ -26,7 +26,6 @@ public class StaggeredViewLayoutHandler implements LayoutViewHandler {
     private JSONObject jsonResponse;
     private ItemAdapter mItemAdapter;
 
-
     public StaggeredViewLayoutHandler(Context applicationContext, ItemAdapter adapter, List<ItemDisplay> itemList) {
         _context = applicationContext;
         mItemAdapter = adapter;
@@ -68,8 +67,7 @@ public class StaggeredViewLayoutHandler implements LayoutViewHandler {
                                     mList.add(itemDisplay);
                                 }
 
-                                if (mList.size() > 0)
-                                {
+                                if (mList.size() > 0) {
                                     mItemAdapter.notifyDataSetChanged();
                                 }
                             }

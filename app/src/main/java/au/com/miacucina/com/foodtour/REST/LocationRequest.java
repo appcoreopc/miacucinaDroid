@@ -24,7 +24,6 @@ public class LocationRequest implements TourLocation {
     public String getLocation(String url) throws InterruptedException {
 
         queue = Volley.newRequestQueue(this._context);
-
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -49,6 +48,4 @@ public class LocationRequest implements TourLocation {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) _context.getSystemService(Context.CONNECTIVITY_SERVICE));
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
-
-
 }

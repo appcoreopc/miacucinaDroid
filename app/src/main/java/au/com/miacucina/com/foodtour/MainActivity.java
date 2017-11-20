@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
         Criteria criteria = new Criteria();
         String provider = locationManager.getBestProvider(criteria, true);
 

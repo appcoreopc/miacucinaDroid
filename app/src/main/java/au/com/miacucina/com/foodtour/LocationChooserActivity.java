@@ -19,10 +19,8 @@ import android.widget.Spinner;
 public class LocationChooserActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     private Spinner citySpinner = null;
     private Spinner countrySpinner = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +79,8 @@ public class LocationChooserActivity extends AppCompatActivity
         });
     }
 
-
-    private void getTargetTour()
-    {
-        if (citySpinner != null && countrySpinner != null)
-        {
+    private void getTargetTour() {
+        if (citySpinner != null && countrySpinner != null) {
             String country = (String) countrySpinner.getSelectedItem();
             String city = (String) citySpinner.getSelectedItem();
 
