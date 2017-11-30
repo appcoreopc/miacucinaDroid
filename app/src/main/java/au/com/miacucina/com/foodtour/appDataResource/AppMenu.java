@@ -40,17 +40,23 @@ public class AppMenu {
     }
 
     public static List<?> getMenu() {
+
+        // localized these //
         List<ItemDisplay> itemList = new ArrayList<>();
-
-        ItemDisplay creditCoupons = new ItemDisplay("Credit & Coupons", "", "", "1");
-        ItemDisplay inviteFriends = new ItemDisplay("Invite friends", "", "", "2");
-        ItemDisplay settings = new ItemDisplay("Settings", "", "", "3");
-        ItemDisplay feedback = new ItemDisplay("Give us feedback", "", "", "4");
-
-        itemList.add(creditCoupons);
-        itemList.add(inviteFriends);
-        itemList.add(settings);
-        itemList.add(feedback);
+        ItemDisplay savedTour = new ItemDisplay("Saved Tour", "", "", "1");
+        ItemDisplay mytour = new ItemDisplay("My Tour", "", "", "2");
+        ItemDisplay searchTour = new ItemDisplay("Search Tours", "", "", "3");
+        ItemDisplay howItWorks   = new ItemDisplay("How it works", "", "", "4");
+        ItemDisplay aboutUS = new ItemDisplay("About us", "", "", "5");
+        ItemDisplay cotactUs = new ItemDisplay("Contact us", "", "", "6");
+        ItemDisplay tripadvisorReview = new ItemDisplay("TripAdvisor review", "", "", "7");
+        itemList.add(savedTour);
+        itemList.add(mytour);
+        itemList.add(searchTour);
+        itemList.add(howItWorks);
+        itemList.add(aboutUS);
+        itemList.add(cotactUs);
+        itemList.add(tripadvisorReview);
 
         return itemList;
     }

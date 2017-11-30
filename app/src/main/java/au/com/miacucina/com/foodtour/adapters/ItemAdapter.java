@@ -73,17 +73,27 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             switch (imageUrl) {
                 case "1":
-                    profileViewHolder.imageView.setImageResource(R.drawable.ic_attach_money_black_24px);
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_location);
                     break;
                 case "2":
-                    profileViewHolder.imageView.setImageResource(R.drawable.ic_card_giftcard_black_24px);
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_savelocation);
                     break;
                 case "3":
-                    profileViewHolder.imageView.setImageResource(R.drawable.ic_settings_black_24px);
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_search_black_24px);
                     break;
                 case "4":
-                    profileViewHolder.imageView.setImageResource(R.drawable.ic_speaker_notes_black_24px);
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_how_it_works);
                     break;
+                case "5":
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_aboutus);
+                    break;
+                case "6":
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_mail_outline_black_24px);
+                    break;
+                case "7":
+                    profileViewHolder.imageView.setImageResource(R.drawable.ic_review);
+                    break;
+
             }
 
         } else if (mViewType == ViewType.STAGGERED) {
